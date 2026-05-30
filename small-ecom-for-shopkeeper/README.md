@@ -9,7 +9,7 @@ budget-conscious, low-scale production system.
 ## Problem statement
 Design a backend system for a small e-commerce website for a local shopkeeper. The shopkeeper wants to sell their products online, manage inventory, and accept payments. Customers should be able to browse products, place orders, and track their deliveries.
 
-### what is the scale we are expecting here & how many products?
+## Scale & Assumptions
 #### Features (in scope):
 
 - Product browsing, search, and filtering
@@ -28,9 +28,9 @@ Design a backend system for a small e-commerce website for a local shopkeeper. T
 
 #### Constraints:
 - Budget is limited so keep infra simple and cost-effective
-- Consistency matters - inventory should never oversell (if 2 users order the last item simultaneously, only one should succeed)
-- Payments must be reliable — no silent failures
-- Downtime should be minimal but this is not a high-availability system like a bank — a few minutes of downtime is acceptable
+- Consistency matters, inventory should never oversell (if 2 users order the last item simultaneously, only one should succeed)
+- Payments must be reliable, no silent failures
+- Downtime should be minimal but this is not a high-availability system like a bank, a few minutes of downtime is acceptable
 
 #### Functional Requirements:
 - Customers can browse, search, and filter products
@@ -38,7 +38,7 @@ Design a backend system for a small e-commerce website for a local shopkeeper. T
 - Customers can place orders and make payments via a third-party gateway (Razorpay)
 - Customers can view their order history and track order status
 - Shopkeeper can manage products and inventory via an admin panel
-- Order status transitions — Pending → Shipped → Delivered
+- Order status transitions -> Pending → Shipped → Delivered
 - Email/SMS notifications sent on order status updates
 
 #### Non-Functional Requirements:
@@ -50,14 +50,14 @@ Design a backend system for a small e-commerce website for a local shopkeeper. T
 - Low latency = product browsing and search should feel fast
 
 #### Calculations & decisions:
-- One product catalog = 1 KB X 500 products = 500KB Data
-- product images == 5 MB X 500 = 2500MB
-- User metadata = 1KB X 1000 = 1 MB (In the worst case lets consider 2 MB)
-- 100 Orders daily = 100 money transactions via RazorPay
-- As Data of product and user is very low and we need queryable db, selecting relational db - Mysql Only one instance.
-- small Redis instance to cache DB read queries & login sessions
-- As we need to keep infra lean and simple and we don't have much scale = considering one monolith service with multiple modules
-- s3 regional bucket for static website hosting where we can keep photos of product and urls in DB
+- One product catalog -> 1 KB X 500 products = 500KB Data
+- Product images -> 5 MB X 500 = 2500MB
+- User metadata -> 1KB X 1000 = 1 MB (In the worst case lets consider 2 MB)
+- 100 Orders daily -> 100 money transactions via RazorPay
+- As Data of product and user is very low and we need queryable db, selecting relational db -> Mysql Only one instance.
+- Small Redis instance to cache DB read queries & login sessions
+- As we need to keep infra lean and simple and we don't have much scale -> considering one monolith service with multiple modules
+- S3 regional bucket for static website hosting where we can keep photos of product and urls in DB
 
 | Decision | Choice | Reasoning |
 |---|---|---|
