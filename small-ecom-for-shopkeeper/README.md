@@ -92,3 +92,6 @@ accordingly  handling crash/webhook-miss scenarios.
   CloudFront as a next step for latency improvement.
 - **Admin concurrency** no optimistic locking on bulk admin 
   updates. Acceptable given single shopkeeper usage.
+
+## Architecture Diagram
+![Architecture](./arch.png)
