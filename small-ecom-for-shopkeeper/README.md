@@ -1,3 +1,5 @@
+![System Design](https://img.shields.io/badge/System%20Design-E--Commerce-blue)
+![Status: Complete](https://img.shields.io/badge/Status-Complete-green)   
 ## Overview
 A system design exercise for a small e-commerce platform. 
 This covers requirements gathering, capacity estimation, 
